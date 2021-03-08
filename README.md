@@ -252,7 +252,7 @@ magnesium*) and (*od280/od315 of diluted wine, flavanoids*).
 
 ||*proanthocyanins,* | *od280/od315,*|
 || *magnesium* | *flavanoids*|
----------------------------------------
+|---------|---------|---------|
 |KNN (*K*) | 57.40\% | 81.48\% |
 |linear SVM (*C*) | 50.00\% | 83.33\% |
 |rbf SVM(*C*) | $46.29\% | 85.18\% |
