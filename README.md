@@ -250,8 +250,8 @@ All the experiments performed on the features(*alcohol, malic acid*)
 have been repeated for the couples of features (*proanthocyanins,
 magnesium*) and (*od280/od315 of diluted wine, flavanoids*).
 
-||*proanthocyanins,* | *od280/od315,*|
-|| *magnesium* | *flavanoids*|
+
+|| *proanthocyanins, magnesium* | *od280/od315, flavanoids*|
 |---------|---------|---------|
 |KNN (*K*) | 57.40\% | 81.48\% |
 |linear SVM (*C*) | 50.00\% | 83.33\% |
