@@ -58,7 +58,7 @@ proportionately to the final distance. To do this the class
 [sklearn.preprocessing.StandardScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html) was used which
 normalizes the data as follows:
 
-<img src="https://render.githubusercontent.com/render/math?math=z=\frac{(x-u)}{s}>
+<img src="https://render.githubusercontent.com/render/math?math=z=\frac{(x-u)}{s}">
 
 where *u* is the mean of the union of the training and validation
 samples and *s* is the standard deviation of the same data.
