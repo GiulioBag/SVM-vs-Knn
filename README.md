@@ -4,18 +4,18 @@ with the tuning of the various hyperparameters of the algorithms. To do
 that *sklearn.datasets.load\_wine* was used and some tests are been
 conducted:
 
--   For $ k \in [1,3,5,7] $ KNN was built.
+-   For  *K* in [1,3,5,7] $ KNN was built.
 
--   For $ C \in [0.001, 0.01, 0.1, 1, 10, 100, 1000] $ linear SVM was
+-   For  *C* in [0.001, 0.01, 0.1, 1, 10, 100, 1000] linear SVM was
     built.
 
--   For $ C \in [0.001, 0.01, 0.1, 1, 10, 100, 1000] $ SVM with $RBF$
+-   For  *C* in [0.001, 0.01, 0.1, 1, 10, 100, 1000] SVM with $RBF$
     kernel was built.
 
--   A grid search was performed for $\gamma$ and $C$ for each possible
+-   A grid search was performed for *gamma* and *C* for each possible
     pair an SVM with $RBF$ kernel was built.
 
--   A grid search was performed for $\gamma$ and $C$ but this time
+-   A grid search was performed for *gamma* and *C* but this time
     perform 5-fold validation.
 
 For each experiment the best model was used to evaluate the test set.
@@ -27,10 +27,9 @@ Description of the project
 ==========================
 
 The aim of the work is to see the different behaviors between KNN and
-SVM and how they change as hyperparameters change.
-
-To do this, the first two features were selected from the [wine dataset](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_wine.html),
- the data were randomly divided into three sets:
+SVM and how they change as hyperparameters change. To do this, the first two features were selected from the 
+[wine dataset](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_wine.html) and
+ the data was randomly divided into three sets:
 
 -   *Train*: the sample of data used to fit the model. The classifier
     sees and learns from this data.
@@ -55,21 +54,15 @@ has a broad range of values, the distance will be governed by this
 particular feature. Therefore, the range of all features should be
 normalized so that each feature contributes approximately
 proportionately to the final distance. To do this the class
-[sklearn.preprocessing.StandardScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html) was used which
-normalizes the data as follows:
+[sklearn.preprocessing.StandardScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html) was used.
 
-<img src="https://render.githubusercontent.com/render/math?math=z=\frac{(x-u)}{s}">
-
-where *u* is the mean of the union of the training and validation
-samples and *s* is the standard deviation of the same data.
-
-For $k \in [1,3,5,7]$ the model was built using the
-*sklearn.neighbors.KNeighborsClassifier* to which the train set was
+Multiple models have been built using *K* between 1 and 7 using the
+[sklearn.neighbors.KNeighborsClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html) to which the train set was
 passed. Euclidean distance was used as metric. Through the use of the
 model the decision boundaries were printed and the validation set was
 evaluated.
 
-![Decision boundaries when *K*=1.](immagini/knn/knn_K=1 "fig:") 
+![Decision boundaries when *K*=1.](immagini/knn/knn_K=1.png "fig:") 
 
 ![Decision boundaries when *K*=3.](immagini/knn/knn_K=3.png)
 
@@ -87,22 +80,17 @@ they are more jagged whereas for larger *K* they tend to be smoother.
 *K*.](immagini/knn/knn_acc.png "fig:")
 
 The figure above shows that, for this data distribution, the classifier
-for $K = 3$ and $K = 5$ obtains the worst result $(71.42\%)$ on the
-validation set, whereas the accuracy improves considerably for $K = 1$.
-The accuracy for this value of the model is $(80.007\%)$. The
-classifier, trained with $k = 1$ and evaluated on the test set has an
-accuracy of $77.78\%$. It is very important to note that the results
+for *K = 3* and *K = 5* obtains the worst result (71.42\%) on the
+validation set, whereas the accuracy improves considerably for *K = 1*.
+The accuracy for this value of the model is (80.007\%). The
+classifier, trained with *k = 1* and evaluated on the test set has an
+accuracy of 77.78\%. It is very important to note that the results
 thus obtained depend on the random shuffle performed at the beginning,
 and that, with other shuffles, different results are obtained.\
 \
-Later for $c \in [0.001, 0.01, 0.1, 1, 10, 100, 1000]$ the model was
-built using the class *sklearn.svm.SVC*@SVM and the linear kernel.
-*sklearn.svm.SVC* implement the “one-against-one” approach for multi-
-class classification. If *n* is the number of classes, then
+Later for *C* in [0.001, 0.01, 0.1, 1, 10, 100, 1000] the model was
+built using the class [sklearn.svm.SVC](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html) and the linear kernel.
 
-$$\frac{n \cdot (n - 1)} {2}$$
-
-classifiers are constructed and each one trains data from two classes.
 As above the model was trained with the train set and decision
 boundaries were printed.
 
@@ -112,8 +100,8 @@ $C$=0.001.](immagini/linear_svm/val_linear_c=0_001.png)
 ![Decision boundaries when
 $C$=0.01.](immagini/linear_svm/val_linear_c=0_01.png)
 
-The decision boundaries obtained for $C = 0.001$ is due to the fact that
-the weight given to the errors committed in the train set, $C$, is so
+The decision boundaries obtained for *C = 0.001* is due to the fact that
+the weight given to the errors committed in the train set, *C*, is so
 low that it does not affect the objective function of the SVM. The only
 purpose of the classifier is therefore to obtain wider margins that are
 possible.
@@ -127,8 +115,8 @@ $C$=1.](immagini/linear_svm/val_linear_c=1.png)
 ![Decision boundaries when
 $C$=10.](immagini/linear_svm/val_linear_c=10.png)
 
-On the other hand, when it was assign larger values to C the model tries
-to make fewer mistakes but reduces the margins. For $ C > 10 $ the
+On the other hand, when it was assign larger values to *C* the model tries
+to make fewer mistakes but reduces the margins. For *C > 10* the
 diagrams are not shown because there are no changes. In all cases, since
 the linear kernel was used the hyperplanes are formed by straight lines.
 
@@ -136,37 +124,29 @@ the linear kernel was used the hyperplanes are formed by straight lines.
 of$C$.](immagini/linear_svm/acc_linear.png "fig:")
 
 The figure above shows the evolution of the accuracy of the model
-evaluated on the validation set when $ C $ changes. Accuracy reaches its
-maximum value ($ 77.14\%$) for $ C = $ 0.1 and for $ C = $ 1. For values
-higher than $ C $ the accuracy of the model decreases because the
+evaluated on the validation set when *C* changes. Accuracy reaches its
+maximum value (77.14\%) for *C = 0.1* and for *C = 1*. For values
+higher than *C* the accuracy of the model decreases because the
 classifier gives too much weight to the mistakes made during the train
 and therefore to reduce these errors reduces the margins. However, this
 makes it easier for SVM to make mistakes by classifying data it has
-never seen. The classifier, trained with $c = 0.1$, and evaluated on the
-test set has an accuracy of $87.04\%$.\
+never seen. The classifier, trained with *C = 0.1*, and evaluated on the
+test set has an accuracy of 87.04\%.\
 \
 Since it is not possible to find a linear decision boundary for the
-classification problem then the data were projected in to a higher
+classification problem then the data was projected in to a higher
 dimension from the original space to try to find a hyperplane in the new
 dimension that helps to classify the data. To do this the SVM kernel has
-been changed, from linear to RBF. So the dot product in the linear
-classifier is replace by:
-
-$$K(x,x')=\exp \left(-{\frac {\|\ x - x' \|^{2}}{2\gamma ^{2}}}\right)$$
-
-$\gamma$ parameter can be seen as the inverse of the radius of influence
+been changed, from linear to RBF. In this way we introduce a new hyperparameter *gamma*
+that can be seen as the inverse of the radius of influence
 of samples selected by the model as support vectors. All tests performed
-on the SVM have been repeated leaving the default value for $\gamma$:
-
-$$\gamma = \frac{1}{(n\_features * \sigma)}$$
-
-where $\sigma$ is the variance of the train set.
+on the SVM have been repeated leaving the default value for *gamma*.
 
 ![Decision boundaries when kernel is RBF and
 $C$=0.1.](immagini/rbf_c/rbf_c=0_001.png)
 
-The decision boundary calculated with $C=0.001$ and the RBF kernel is
-the same as that calculated with the same $C$ and linear kernel, because
+The decision boundary calculated with *C=0.001* and the RBF kernel is
+the same as that calculated with the same *C* and linear kernel, because
 in both cases too little weight has been given to the misclassification.
 
 ![Decision boundaries when kernel is RBF and $C$=
@@ -175,7 +155,7 @@ in both cases too little weight has been given to the misclassification.
 ![Decision boundaries when kernel is RBF and
 $C$=1000.](immagini/rbf_c/rbf_c=1000.png)
 
-The graphs, for a sufficiently high $C$, show how the decision
+The graphs, for a sufficiently high *C*, show how the decision
 boundaries are no longer formed by straight lines but by curve lines,
 this is due to the use of a non-linear kernel.
 
@@ -183,31 +163,31 @@ this is due to the use of a non-linear kernel.
 $C$=1.](immagini/rbf_c/acc_rbf.png "fig:")
 
 The maximum accuracy, calculated on the validation set, for the various
-values of $C$, improves passing from $77,14\%$, for the SVM with linear
-kernel, to $80.00\%$ always for $C = 0.1$. The accuracy on the test set
-of the classifier, trained with the best $C$ on the validation set,
-increases from $75.92\%$ to $79.63\%$. This is due to the fact that the
+values of *C*, improves passing from 77,14\%, for the SVM with linear
+kernel, to 80.00\% always for *C = 0.1*. The accuracy on the test set
+of the classifier, trained with the best *C* on the validation set,
+increases from 75.92\% to 79.63\%. This is due to the fact that the
 data is better separable in a higher dimension.
 
-To try to further improve the results both $\gamma$ and $C$ are tuned at
-the same time. The set of values tested for $\gamma$ is
-$[0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1, 10]$ and for $C$ is
-$[0.01, 0.05, 0.1, 0.5, 1, 5, 10, 100, 1000]$. The lower value of $C$
+To try to further improve the results both *gamma* and C are tuned at
+the same time. The set of values tested for *gamma*is
+[0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1, 10] and for *C* is
+[0.01, 0.05, 0.1, 0.5, 1, 5, 10, 100, 1000]. The lower value of *C*
 was not taken, as the previous experiments show that with this value a
 worse model was obtained compared to the other values.
 
 ![Decision boundaries when kernel is RBF and $C$=10 ang
 $\gamma = 101$.](immagini/rbf_C_g/rbf_c=10_g=10.png "fig:")
 
-The behavior of the model is very sensitive to the $\gamma$ parameter.
-If $\gamma$ is too large, the radius of the area of influence of the
+The behavior of the model is very sensitive to the *gamma* parameter.
+If it is too large, the radius of the area of influence of the
 support vectors only includes the support vector itself and no amount of
-regularization with C will be able to prevent overfitting.@sci_rbf
+regularization with *C* will be able to prevent overfitting.
 
 ![Decision boundaries when kernel is RBF and $C$=5 ang
 $\gamma = 0.001$.](immagini/rbf_C_g/rbf_c=5_g=0_001.png "fig:")
 
-When $\gamma$ is very small, the model is too constrained and cannot
+When *gamma* is very small, the model is too constrained and cannot
 capture the complexity or “shape” of the data. The region of influence
 of any selected support vector would include the whole training set. The
 resulting model will behave similarly to a linear model.
@@ -215,36 +195,19 @@ resulting model will behave similarly to a linear model.
 ![Decision boundaries when kernel is RBF and $C$=1000 and
 $\gamma = 0.05$.](immagini/rbf_C_g/rbf_c=1000_g=0_05.png "fig:")
 
-The couple of hyperparameters that gives a better accuracy ($85.71\%$)
-on the validation set is $(C = 1000, \gamma = 0.05)$. The accuracy on
-the test set of the classifier, trained with these value, is $81.48\%$.
-The model is more precise than the previous one because both $\gamma$
-and $C$ have been tuned at the same time.
+The couple of hyperparameters that gives a better accuracy (85.71\%)
+on the validation set is (*C = 1000, gamma = 0.05*). The accuracy on
+the test set of the classifier, trained with these value, is 81.48\%.
+The model is more precise than the previous one because both *gamma*
+and *C* have been tuned at the same time.
 
 After merge of training and validation split it was done a grid search
-for $\gamma$ and $C$ perform 5-fold validation. To do k-fold validation
-was used the function
-*sklearn.model\_selection.cross\_val\_score*@cross.
+for *gamma* and *C* perform 5-fold validation. To do k-fold validation
+was used the function [sklearn.model\_selection.cross\_val\_score](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.cross_val_score.html).
 
-In k-fold cross-validation, the train set is randomly partitioned into
-$k$ equal size subsamples. Of the $k$ subsamples, a single subsample is
-retained as the validation data for testing the model, and the remaining
-$k-1$ subsamples are used as training data. The cross-validation process
-is then repeated $k$ times, with each of the $k$ subsamples used exactly
-once as the validation data. The average of the results from the folds
-was calculated to produce a single estimation of model. The advantage of
-this method is that all observations are used for both training and
-validation, and each observation is used for validation exactly once.
-Furthermore when k-fold cross-validation is used it creates $k$
-different models and test them on $k$ different validation sets, it
-makes the performance of the algorithm more stable.Indeed when only one
-single appraisal is done on validation set, this result may be because
-of chance or a biased test set for some reason. By training $k$
-different models is more understandable what is happening.
-
-The couple of hyperparameters that gives a better accuracy ($79.05\%$)
-on the validation set is $(C = 100, \gamma = 0.05)$. The accuracy on the
-test set of the classifier, trained with these value, is $87.04\%$.
+The couple of hyperparameters that gives a better accuracy (79.05\%)
+on the validation set is (*C = 100, gamma = 0.05*). The accuracy on the
+test set of the classifier, trained with these value, is 87.04\%.
 Accuracy increases on the test set, this could be due to the fact that
 by trying different combinations of data the model has learned of
 patterns not previously known.\
@@ -253,7 +216,7 @@ Since irrelevant data components can adversely affect the model’s
 performance, it was decided to use a feature selection technique to
 determine a feature ranking and use the best and the worst couple to
 retrain both models, KNN and SVM. To create the ranking, which is
-independent of the classifier, the ReliefF@relief algorithm was used,
+independent of the classifier, the [Relief](https://epistasislab.github.io/scikit-rebate/using/) algorithm was used,
 this is a filter type method that assigns score to the features. This
 score goes between -1 and 1, where a greater weight indicates a greater
 relevance of this feature. The score was calculated using only train and
@@ -287,16 +250,14 @@ All the experiments performed on the features(*alcohol, malic acid*)
 have been repeated for the couples of features (*proanthocyanins,
 magnesium*) and (*od280/od315 of diluted wine, flavanoids*).
 
-<span>c|c|c</span> & *proanthocyanins,* & *od280...,*\
-& *magnesium* & *flavanoids*\
-
-KNN (*K*) & $57.40\%$ & $81.48\%$\
-linear SVM ($C$) & $50.00\%$ & $83.33\%$\
-rbf SVM($C$) & $46.29\%$ & $85.18\%$\
-rbf SVM($C, \gamma$) & $55.55\%$ & $85.18\%$\
-Cross-fold($C, \gamma$) & $55.55\%$ & $85.18\%$\
-
-[second]
+||*proanthocyanins,* | *od280/od315,*|
+|| *magnesium* | *flavanoids*|
+---------------------------------------
+|KNN (*K*) | 57.40\% | 81.48\% |
+|linear SVM (*C*) | 50.00\% | 83.33\% |
+|rbf SVM(*C*) | $46.29\% | 85.18\% |
+|rbf SVM(*C*, *gamma*) | 55.55\% | 85.18\%|
+|Cross-fold(*C*, *gamma*) | 55.55\% | 85.18\%|
 
 The accuracy obtained on the test set are reported in the tab [second]:
 it can be seen how the use of different features strongly changes the
@@ -345,7 +306,7 @@ is odd when the number of classes is two, in order to avoid the same
 quantity of votes for both classes. In the case of a small number of
 neighbors, the noise will have a higher influence on the result on the
 other hand a large number of neighbors makes the classification
-boundaries less distinct and the new data are influenced, especially in
+boundaries less distinct and the new data is influenced, especially in
 a sparse space, by points distant from them.
 
 ![How KNN classifies new data.](immagini/esempio_KNN.png)
