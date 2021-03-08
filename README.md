@@ -343,7 +343,7 @@ hyperplanes that separate the two classes of data. The region bounded by
 these two hyperplanes is called the “margin”, and the maximum-margin
 hyperplane is the hyperplane that lies halfway between them.
 
-![Hyperplane in two dimensional space.](immagini/esempio_svm)
+![Hyperplane in two dimensional space.](immagini/esempio_svm.png)
 
 \
 In real applications there is not always a margin, therefore classes are
