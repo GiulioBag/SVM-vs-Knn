@@ -1,4 +1,4 @@
-**Abstract**: The purpose of this repository is to show how classification
+The purpose of this repository is to show how classification
 work through the use of KNN and SVM and how the results obtained change
 with the tuning of the various hyperparameters of the algorithms. To do
 that [wine dataset](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_wine.html3) was used and some tests are been
